@@ -1,0 +1,206 @@
+import React, { useState } from "react";
+import * as emailjs from "emailjs-com";
+import "./style.css";
+import { Helmet, HelmetProvider } from "react-helmet-async";
+import { meta } from "../../content_option";
+import { Container, Row, Col, Alert } from "react-bootstrap";
+import { contactConfig, dataabout } from "../../content_option";
+import MemberOption from "./memberOption";
+import FileInput from "./fileUpload";
+
+export const Merchandise = () => {
+  const [formData, setFormdata] = useState({
+    email: "",
+    name: "",
+    message: "",
+    loading: false,
+    show: false,
+    alertmessage: "",
+    variant: "",
+  });
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setFormdata({ loading: true });
+
+    const templateParams = {
+      from_name: formData.email,
+      user_name: formData.name,
+      to_name: contactConfig.YOUR_EMAIL,
+      message: formData.message,
+    };
+
+    emailjs
+      .send(
+        contactConfig.YOUR_SERVICE_ID,
+        contactConfig.YOUR_TEMPLATE_ID,
+        templateParams,
+        contactConfig.YOUR_USER_ID
+      )
+      .then(
+        (result) => {
+          console.log(result.text);
+          setFormdata({
+            loading: false,
+            alertmessage: "SUCCESS! ,Thankyou for your messege",
+            variant: "success",
+            show: true,
+          });
+        },
+        (error) => {
+          console.log(error.text);
+          setFormdata({
+            alertmessage: `Faild to send!,${error.text}`,
+            variant: "danger",
+            show: true,
+          });
+          document.getElementsByClassName("co_alert")[0].scrollIntoView();
+        }
+      );
+  };
+
+  const handleChange = (e) => {
+    setFormdata({
+      ...formData,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  return (
+    <HelmetProvider>
+      <Container>
+        <Helmet>
+          <meta charSet="utf-8" />
+          <title>{meta.title} | Merchandise</title>
+          <meta name="description" content={meta.description} />
+        </Helmet>
+        <Row className="mb-5 mt-3 pt-md-3">
+          <Col lg="8">
+            <h1 className="display-4 mb-4">Pre-order Merchandise</h1>
+            <hr className="t_border my-4 ml-0 text-left" />
+          </Col>
+        </Row>
+        <Row className="sec_sp">
+          <Col lg="12">
+            <h3 className="color_sec py-4">Order now, and have memories with your favorite members!!</h3>
+            <Alert
+              //show={formData.show}
+              variant={formData.variant}
+              className={`rounded-0 co_alert ${formData.show ? "d-block" : "d-none"
+                }`}
+              onClose={() => setFormdata({ show: false })}
+              dismissible
+            >
+              <p className="my-0">{formData.alertmessage}</p>
+            </Alert>
+          </Col>
+          <Col lg="12" className="mb-5">
+            <p style={{ textAlign: "justify" }}>{dataabout.aboutme}</p>
+          </Col>
+          <Col lg="12" className="d-flex align-items-center">
+            <form onSubmit={handleSubmit} className="contact__form w-100">
+              <h3 style={{ marginBottom: 50 }}>Please fill in your data first</h3>
+              <Row>
+                <Col lg="6" className="form-group">
+                  <input
+                    className="form-control"
+                    id="name"
+                    name="name"
+                    placeholder="Who Are You ?"
+                    value={formData.name || ""}
+                    type="text"
+                    required
+                    onChange={handleChange}
+                  />
+                </Col>
+                <Col lg="6" className="form-group">
+                  <input
+                    className="form-control rounded-0"
+                    id="email"
+                    name="email"
+                    placeholder="What's Your Email ?"
+                    type="email"
+                    value={formData.email || ""}
+                    required
+                    onChange={handleChange}
+                  />
+                </Col>
+              </Row>
+              <Row>
+                <Col lg="6" className="form-group">
+                  <input
+                    className="form-control"
+                    id="phone"
+                    name="phone"
+                    placeholder="What's Your Phone Number ?"
+                    value={formData.phone || ""}
+                    type="text"
+                    required
+                    onChange={handleChange}
+                  />
+                </Col>
+                <Col lg="6" className="form-group">
+                  <input
+                    className="form-control rounded-0"
+                    id="social"
+                    name="social"
+                    placeholder="What's Your Social Media ?"
+                    type="text"
+                    value={formData.social || ""}
+                    required
+                    onChange={handleChange}
+                  />
+
+                </Col>
+              </Row>
+
+              <Col lg="12" className="form-group">
+                <input
+                  className="form-control rounded-0"
+                  id="origin"
+                  name="origin"
+                  placeholder="Where Are You From?"
+                  type="text"
+                  value={formData.origin || ""}
+                  required
+                  onChange={handleChange}
+                />
+              </Col>
+
+              <Col lg="12" className="form-group">
+                <MemberOption />
+              </Col>
+              <Col lg="12" className="form-group">
+                <div style={{ display: "flex", justifyContent: "space-between", marginBottom: "20px" }}>
+                  <h4>Total Order Quantity</h4>
+                  <h4>40 Cheki</h4>
+                </div>
+                <div style={{ display: "flex", justifyContent: "space-between", marginBottom: "20px" }}>
+                  <h4></h4>
+                  <h4>Rp 1.450.000</h4>
+                </div>
+                <div style={{ display: "flex", justifyContent: "space-between", marginBottom: "20px" }}>
+                  <h4> Detail Transfer<br />BCA : 1390904378 (Muhammad Ridwan Jamil)</h4>
+                </div>
+
+              </Col>
+              <Col lg="12" className="form-group">
+                <FileInput />
+
+              </Col>
+              <br />
+              <Row>
+                <Col lg="12" className="form-group">
+                  <button className="btn ac_btn" type="submit">
+                    {formData.loading ? "Sending..." : "Send"}
+                  </button>
+                </Col>
+              </Row>
+            </form>
+          </Col>
+        </Row>
+      </Container>
+      <div className={formData.loading ? "loading-bar" : "d-none"}></div>
+    </HelmetProvider>
+  );
+};
