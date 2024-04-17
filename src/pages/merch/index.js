@@ -191,7 +191,7 @@ export const Merchandise = () => {
               <br />
               <Row>
                 <Col lg="12" className="form-group">
-                  <button className="btn ac_btn" type="submit">
+                  <button className="btn ac_btn" type="submit" style={{ width: '100%' }}>
                     {formData.loading ? "Sending..." : "Send"}
                   </button>
                 </Col>

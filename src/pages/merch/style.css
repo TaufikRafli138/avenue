@@ -41,7 +41,7 @@ button.btn.ac_btn:hover {
     justify-content: center;
     gap: 15px;
     color: #8A3FFC;
-    background-color: #fff;
+    background-color: var(--primary-color);
     border: 1.5px dashed #8A3FFC;
     border-radius: 20px;
     cursor: pointer;
@@ -62,7 +62,7 @@ button.btn.ac_btn:hover {
     align-items: center;
     justify-content: center;
     border-radius: 25px;
-    background-color: #f3ecff;
+    /* background-color: #f3ecff; */
 }
 
 .selected-file {
@@ -116,5 +116,12 @@ button.btn.ac_btn:hover {
 
     100% {
         transform: translateX(100%);
+    }
+}
+
+@media (max-width: 768px) {
+    .gallery-container {
+        min-width: 100%;
+        /* Atur lebar minimum div menjadi 100% saat mode mobile */
     }
 }

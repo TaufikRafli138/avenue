@@ -11,10 +11,10 @@ import {
   services,
 } from "../../content_option";
 import {
-  albumAvenue,
+  albumAvenue, photofc
 } from "../../albumAvenue";
 import SpotifyPlayer from './albumPlayer';
-import Carousel from './photoCarousel';
+import Gallery from './gallery';
 export const About = () => {
   return (
     <HelmetProvider>
@@ -85,9 +85,10 @@ export const About = () => {
         </Row>
         <Row className="sec_sp_sec" >
           <Col className="d-flex align-items-center">
-            <div>
-              <h1 className="display-4 mb-4">Fans Club</h1>
+            <div className="gallery-container">
+              <h1 className="display-4 mb-4 mt-4">Fans Club</h1>
               <hr className="t_border my-4 ml-0 text-left" />
+              <Gallery data={photofc} />
               <p style={{ textAlign: "justify" }}>{dataabout.aboutme}</p>
               <Link to="/fanletter" style={{ display: "flex", alignItems: "center", justifyContent: "center", textDecoration: "none", marginBottom: "20px", marginTop: "50px" }}>
                 <div id="button_p" className="ac_btn btn" style={{ width: 300, display: "flex", alignItems: "center" }}>

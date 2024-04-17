@@ -1,7 +1,8 @@
 import React from 'react';
 import { Col, Row } from 'react-bootstrap';
 import AudioPlayer from 'react-h5-audio-player';
-import 'react-h5-audio-player/lib/styles.css';
+// import 'react-h5-audio-player/lib/styles.css';
+import './customPlayer.css';
 import './style.css'; // File CSS untuk styling
 
 const SpotifyPlayer = ({ data }) => {
@@ -26,6 +27,7 @@ const SpotifyPlayer = ({ data }) => {
                                 autoPlay
                                 src={data.interHarmon.audioSrc}
                                 onPlay={e => console.log("onPlay")}
+                                className="media_player_ngikut"
                             // other props here
                             />
                         </Col>

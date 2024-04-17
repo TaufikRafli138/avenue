@@ -107,7 +107,7 @@
 }
 
 .player-container {
-    background-color: #f4f4f4;
+    background-color: var(--secDivTheme-color);
     width: 100%;
     padding: 20px;
     border-radius: 8px;
@@ -140,6 +140,7 @@
     width: 100%;
     height: auto;
 }
+
 
 /* Customize other styles as needed */
 

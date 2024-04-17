@@ -15,4 +15,11 @@ const albumAvenue = {
         audioSrc: "/tertuju.m4a"
     },
 };
-export { albumAvenue };
+
+const photofc = {
+    photo: ["/fc/1.jpg",
+        "/fc/2.jpg",
+        "/fc/3.jpg",
+        "/fc/4.jpg"],
+};
+export { albumAvenue, photofc };

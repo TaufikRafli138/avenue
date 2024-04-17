@@ -6,6 +6,7 @@ import { Portfolio } from "../pages/portfolio";
 import { ContactUs } from "../pages/contact";
 import { About } from "../pages/about";
 import { Member } from "../pages/ourmember";
+import { DetailMember } from "../pages/memberdetail";
 import { Fanletter } from "../pages/fanletter";
 import { Merchandise } from "../pages/merch";
 import { Socialicons } from "../components/socialicons";
@@ -28,6 +29,7 @@ const AnimatedRoutes = withRouter(({ location }) => (
         <Route path="/portfolio" element={<Portfolio />} />
         <Route path="/contact" element={<ContactUs />} />
         <Route path="/member" element={<Member />} />
+        <Route path="/DetailMember/:id" element={<DetailMember />} />
         <Route path="/fanletter" element={<Fanletter />} />
         <Route path="/merch" element={<Merchandise />} />
         <Route path="*" element={<Home />} />

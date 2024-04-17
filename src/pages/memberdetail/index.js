@@ -5,7 +5,7 @@ import { Container, Row, Col } from "react-bootstrap";
 import { member } from "../../memberAvenue";
 import { meta } from "../../content_option";
 
-export const Member = () => {
+export const DetailMember = () => {
   return (
     <HelmetProvider>
       <Container className="About-header">
@@ -16,7 +16,7 @@ export const Member = () => {
         </Helmet>
         <Row className="mb-5 mt-3 pt-md-3">
           <Col lg="8">
-            <h1 className="display-4 mb-4"> Our Member </h1>{" "}
+            <h1 className="display-4 mb-4"> Our dsd </h1>{" "}
             <hr className="t_border my-4 ml-0 text-left" />
           </Col>
         </Row>
@@ -36,8 +36,7 @@ export const Member = () => {
                   {/* <p>{data.callsign}</p>
                   <p>``lorem ipsum dolor si amet``</p> */}
 
-                  <a href={`/DetailMember/${data.callsign}`}>View Member</a>
-                  {/* Tautan tidak memiliki tujuan, ganti dengan tautan yang benar */}
+                  <a href="#">View Member</a> {/* Tautan tidak memiliki tujuan, ganti dengan tautan yang benar */}
                 </div>
               </div>
             );
