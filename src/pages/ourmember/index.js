@@ -11,21 +11,20 @@ export const Member = () => {
       <Container className="About-header">
         <Helmet>
           <meta charSet="utf-8" />
-          <title> Portfolio | {meta.title} </title>{" "}
+          <title>Portfolio | {meta.title}</title>
           <meta name="description" content={meta.description} />
         </Helmet>
         <Row className="mb-5 mt-3 pt-md-3">
           <Col lg="8">
-            <h1 className="display-4 mb-4"> Our Member </h1>{" "}
+            <h1 className="display-4 mb-4">Our Member</h1>
             <hr className="t_border my-4 ml-0 text-left" />
           </Col>
         </Row>
         <div className="mb-5 po_items_ho" style={{ display: "flex", flexWrap: "wrap" }}>
-          {member.dataMember && Object.keys(member.dataMember).map((key, i) => {
-            const data = member.dataMember[key];
+          {member.dataMember && Object.values(member.dataMember).map((data, i) => {
             const isCaptain = data.role === "captain";
             return (
-              <div key={i} className="po_item" style={{ width: "33%", marginBottom: "20px", position: "relative" }}>
+              <div key={data.callsign} className="po_item" style={{ width: "33%", marginBottom: "20px", position: "relative" }}>
                 {isCaptain && ( // Jika role adalah captain, tambahkan gambar dan gaya tambahan
                   <img src="/capt.png" alt="Captain Icon" style={{ position: "absolute", bottom: 10, left: 10, width: "25%", height: "auto" }} />
                 )}
@@ -37,14 +36,12 @@ export const Member = () => {
                   <p>``lorem ipsum dolor si amet``</p> */}
 
                   <a href={`/DetailMember/${data.callsign}`}>View Member</a>
-                  {/* Tautan tidak memiliki tujuan, ganti dengan tautan yang benar */}
+                  {/* Tautan akan mencakup callsign yang sesuai dengan setiap anggota */}
                 </div>
               </div>
             );
           })}
         </div>
-
-
       </Container>
     </HelmetProvider>
   );

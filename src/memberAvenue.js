@@ -13,10 +13,10 @@ const member = {
             asal: "Tasikmalaya",
             role: "member",
             instagram: "www.google.com",
-            twitter: "www.google.com",
-            tiktok: "www.google.com",
+            twitter: "Oddyeo",
+            tiktok: "avenue_ofc",
         },
-        aurell: {
+        Ulell: {
             profile: "/aurellProfile.png",
             nama: "Syahla Nazmi NoorAurell",
             bod: "18/03/2001",
@@ -28,10 +28,10 @@ const member = {
             asal: "Tasikmalaya",
             role: "member",
             instagram: "www.google.com",
-            twitter: "www.google.com",
+            twitter: "babyyaurell",
             tiktok: "www.google.com",
         },
-        nabi: {
+        Nabi: {
             profile: "/nabiProfile.png",
             nama: "Nabila Agnia Putri",
             bod: "18/03/2001",
@@ -43,10 +43,10 @@ const member = {
             asal: "Tasikmalaya",
             role: "member",
             instagram: "www.google.com",
-            twitter: "www.google.com",
+            twitter: "babyaurell",
             tiktok: "www.google.com",
         },
-        nara: {
+        Nara: {
             profile: "/naraProfile.png",
             nama: "Syahla Nazmi NoorAurell",
             bod: "18/03/2001",

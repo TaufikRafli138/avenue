@@ -22,4 +22,14 @@ const photofc = {
         "/fc/3.jpg",
         "/fc/4.jpg"],
 };
-export { albumAvenue, photofc };
+
+
+const documentationPhotos = {
+    photo: ["/fc/1.jpg",
+        "/fc/2.jpg",
+        "/fc/3.jpg",
+        "/fc/4.jpg"],
+};
+
+
+export { albumAvenue, photofc, documentationPhotos };

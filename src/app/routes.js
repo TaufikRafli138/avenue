@@ -6,9 +6,11 @@ import { Portfolio } from "../pages/portfolio";
 import { ContactUs } from "../pages/contact";
 import { About } from "../pages/about";
 import { Member } from "../pages/ourmember";
-import { DetailMember } from "../pages/memberdetail";
+import MemberDetail from "../pages/memberdetail";
 import { Fanletter } from "../pages/fanletter";
 import { Merchandise } from "../pages/merch";
+import { GalleryPhotos } from "../pages/gallery";
+import { Schedule } from "../pages/schedule";
 import { Socialicons } from "../components/socialicons";
 import { CSSTransition, TransitionGroup } from "react-transition-group";
 
@@ -29,8 +31,10 @@ const AnimatedRoutes = withRouter(({ location }) => (
         <Route path="/portfolio" element={<Portfolio />} />
         <Route path="/contact" element={<ContactUs />} />
         <Route path="/member" element={<Member />} />
-        <Route path="/DetailMember/:id" element={<DetailMember />} />
+        <Route path="/DetailMember/:callsign" element={<MemberDetail />} />
         <Route path="/fanletter" element={<Fanletter />} />
+        <Route path="/gallery" element={<GalleryPhotos />} />
+        <Route path="/schedule" element={<Schedule />} />
         <Route path="/merch" element={<Merchandise />} />
         <Route path="*" element={<Home />} />
       </Routes>

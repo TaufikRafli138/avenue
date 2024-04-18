@@ -7,6 +7,11 @@
     -webkit-column-gap: 4rem;
 }
 
+.ngikutaplikasi {
+    background: var(--primary-color);
+
+}
+
 .po_item {
     display: inline-block;
     width: 100%;
