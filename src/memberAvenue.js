@@ -30,6 +30,8 @@ const member = {
             instagram: "www.google.com",
             twitter: "babyyaurell",
             tiktok: "www.google.com",
+            message: "Senang Bertemu Kalian Semua >.<",
+            videojiko: "/video/example.mp4",
         },
         Nabi: {
             profile: "/nabiProfile.png",
