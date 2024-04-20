@@ -8,6 +8,10 @@
     color: var(--text-color);
 }
 
+.kosongan {
+    background-color: var(--primary-color);
+}
+
 .menu__button:focus,
 .menu__button:hover {
     color: var(--text-color);

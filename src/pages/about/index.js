@@ -106,7 +106,7 @@ export const About = () => {
           <Col className="d-flex align-items-center">
 
           </Col>
-        </Row>s
+        </Row>
 
 
 

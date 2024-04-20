@@ -1,3 +1,22 @@
+.home-page {
+
+    background-image: url('../../../public/home.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    /* Background tetap pada posisi saat scrolling */
+}
+
+[data-theme="dark"] .home-page {
+
+    background-image: url('../../../public/home-dark.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
 section {
     flex: 1 0 auto;
     position: relative;

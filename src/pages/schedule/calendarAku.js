@@ -1,12 +1,15 @@
 import React, { useState } from "react";
 import Calendar from "@ericz1803/react-google-calendar";
 import { css } from "@emotion/react";
+import "./style.css"
 
 const API_KEY = "AIzaSyBEq0-dxRfhangJJ8wC-v0hkAjeYqjLS2E";
 
 let calendars = [
-  { calendarId: "babyanetworkserviceabsoulute@gmail.com",
-  color: "#B241D1", }
+  {
+    calendarId: "babyanetworkserviceabsoulute@gmail.com",
+    color: "#B241D1",
+  }
 ];
 
 let styles = {
@@ -48,6 +51,7 @@ export default function App() {
           paddingBottom: "50px",
           margin: "auto",
           maxWidth: "1200px"
+
         }}
       >
         <Calendar

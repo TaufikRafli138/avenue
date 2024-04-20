@@ -1,36 +1,42 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { member } from "../../memberAvenue";
 
-function MemberOption() {
-    const [selectedMember, setSelectedMember] = useState('');
+function MemberOption({ setTotal }) {
+    const initialSelectedMembers = {};
+    Object.keys(member.dataMember).forEach(key => {
+        initialSelectedMembers[key] = '';
+    });
+    const [selectedMembers, setSelectedMembers] = useState(initialSelectedMembers);
 
-    const handleChange = (event) => {
-        setSelectedMember(event.target.value);
+    // useEffect untuk menghitung total setiap kali selectedMembers berubah
+    useEffect(() => {
+        let sum = 0;
+        Object.values(selectedMembers).forEach(val => {
+            if (val !== '') {
+                const quantity = parseInt(val.split('-')[1]); // Extract quantity from value
+                sum += quantity;
+            }
+        });
+        setTotal(sum); // Update total
+    }, [selectedMembers]);
+
+    const handleChange = (event, memberId) => {
+        const { value } = event.target;
+        setSelectedMembers(prevState => ({
+            ...prevState,
+            [memberId]: value,
+        }));
     };
 
     return (
         <div style={{ marginBottom: 30 }}>
-            {/* Select untuk memilih dari semua member */}
-            <select
-                className="form-control"
-                value={selectedMember}
-                onChange={(e) => handleChange(e, "all")}
-                style={{ marginBottom: 20 }}
-            >
-                <option value="">Cheki All Member</option>
-                {[...Array(10)].map((_, index) => (
-                    <option key={index} value={index + 1}>
-                        {index + 1}
-                    </option>
-                ))}
-            </select>
 
-            {/* Select untuk setiap member */}
+
             {Object.keys(member.dataMember).map((key) => (
                 <select
                     key={key}
                     className="form-control"
-                    value={selectedMember}
+                    value={selectedMembers[key]}
                     onChange={(e) => handleChange(e, key)}
                     style={{ marginBottom: 20 }}
                 >
@@ -44,8 +50,6 @@ function MemberOption() {
             ))}
         </div>
     );
-
-
 }
 
 export default MemberOption;

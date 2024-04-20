@@ -35,9 +35,8 @@ export const GalleryPhotos = () => {
         </Row>
         <Row className="sec_sp">
           <Col className="d-flex align-items-center">
-
           </Col>
-        </Row>s
+        </Row>
       </Container>
     </HelmetProvider >
   );

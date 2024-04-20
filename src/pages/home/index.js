@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./style.css";
 import { Helmet, HelmetProvider } from "react-helmet-async";
 import Typewriter from "typewriter-effect";
@@ -7,6 +7,12 @@ import { Link } from "react-router-dom";
 import Slideshow from "./slider";
 
 export const Home = () => {
+  useEffect(() => {
+    document.body.classList.add("home-page"); // Tambahkan kelas "member-page" ke elemen body saat komponen dimuat
+    return () => {
+      document.body.classList.remove("home-page"); // Hapus kelas saat komponen dibongkar
+    };
+  }, []);
   return (
     <HelmetProvider>
       <section id="home" className="home">

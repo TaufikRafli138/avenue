@@ -1,11 +1,17 @@
-import React from "react";
-import "./style.css";
+import React, { useEffect } from "react";
+import "./styleku.css";
 import { Helmet, HelmetProvider } from "react-helmet-async";
 import { Container, Row, Col } from "react-bootstrap";
 import { member } from "../../memberAvenue";
 import { meta } from "../../content_option";
 
 export const Member = () => {
+  useEffect(() => {
+    document.body.classList.add("member-page"); // Tambahkan kelas "member-page" ke elemen body saat komponen dimuat
+    return () => {
+      document.body.classList.remove("member-page"); // Hapus kelas saat komponen dibongkar
+    };
+  }, []);
   return (
     <HelmetProvider>
       <Container className="About-header">
@@ -20,23 +26,21 @@ export const Member = () => {
             <hr className="t_border my-4 ml-0 text-left" />
           </Col>
         </Row>
-        <div className="mb-5 po_items_ho" style={{ display: "flex", flexWrap: "wrap" }}>
+        <div className="mb-5 " style={{ display: "flex", flexWrap: "wrap" }}>
           {member.dataMember && Object.values(member.dataMember).map((data, i) => {
             const isCaptain = data.role === "captain";
             return (
-              <div key={data.callsign} className="po_item" style={{ width: "33%", marginBottom: "20px", position: "relative" }}>
+              <div key={data.callsign} className="imajinate_item" style={{ width: "33%", marginBottom: "20px", position: "relative" }}>
                 {isCaptain && ( // Jika role adalah captain, tambahkan gambar dan gaya tambahan
-                  <img src="/capt.png" alt="Captain Icon" style={{ position: "absolute", bottom: 10, left: 10, width: "25%", height: "auto" }} />
+                  <img src="/capt.png" alt="Captain Icon" style={{ position: "absolute", top: 10, right: 10, width: "25%", height: "auto" }} />
                 )}
-                <h1 className="memberName" style={{ position: "absolute", top: 10, left: 5, width: "25%", height: "auto", fontFamily: "lucida console" }}>{data.callsign}</h1>
-
-                <img src={data.profile} alt="" style={{ width: "100%" }} />
+                <div className="bottonelah">
+                  <h1 className="memberName" >{data.callsign}</h1>
+                </div>
+                <img src={data.profile} alt="" className="imgnya" />
                 <div className="content">
-                  {/* <p>{data.callsign}</p>
-                  <p>``lorem ipsum dolor si amet``</p> */}
 
                   <a href={`/DetailMember/${data.callsign}`}>View Member</a>
-                  {/* Tautan akan mencakup callsign yang sesuai dengan setiap anggota */}
                 </div>
               </div>
             );

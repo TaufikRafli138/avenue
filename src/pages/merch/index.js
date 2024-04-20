@@ -9,6 +9,7 @@ import MemberOption from "./memberOption";
 import FileInput from "./fileUpload";
 
 export const Merchandise = () => {
+  const [total, setTotal] = useState(0);
   const [formData, setFormdata] = useState({
     email: "",
     name: "",
@@ -168,16 +169,17 @@ export const Merchandise = () => {
               </Col>
 
               <Col lg="12" className="form-group">
-                <MemberOption />
+                <MemberOption setTotal={setTotal} />
               </Col>
               <Col lg="12" className="form-group">
                 <div style={{ display: "flex", justifyContent: "space-between", marginBottom: "20px" }}>
                   <h4>Total Order Quantity</h4>
-                  <h4>40 Cheki</h4>
+                  <h3>Total: {total}</h3> {/* Tampilkan total di sini */}
                 </div>
                 <div style={{ display: "flex", justifyContent: "space-between", marginBottom: "20px" }}>
                   <h4></h4>
-                  <h4>Rp 1.450.000</h4>
+                  <h4>{(total * 30000).toLocaleString('id-ID', { style: 'currency', currency: 'IDR' })}</h4>
+
                 </div>
                 <div style={{ display: "flex", justifyContent: "space-between", marginBottom: "20px" }}>
                   <h4> Detail Transfer<br />BCA : 1390904378 (Muhammad Ridwan Jamil)</h4>
@@ -189,9 +191,9 @@ export const Merchandise = () => {
 
               </Col>
               <br />
-              <Row>
-                <Col lg="12" className="form-group">
-                  <button className="btn ac_btn" type="submit" style={{ width: '100%' }}>
+              <Row className="mb-5">
+                <Col lg="12" className="form-group mb-5">
+                  <button className="btn ac_btn mb-5" type="submit" style={{ width: '100%' }}>
                     {formData.loading ? "Sending..." : "Send"}
                   </button>
                 </Col>

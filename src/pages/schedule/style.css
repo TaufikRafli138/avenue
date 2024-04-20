@@ -141,6 +141,9 @@
     height: auto;
 }
 
+.footer {
+    display: none;
+}
 
 /* Customize other styles as needed */
 
