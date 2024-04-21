@@ -69,7 +69,7 @@ export const About = () => {
         </Row>
 
 
-        <Row className="sec_sp_sec" >
+        <Row className="sec_sp_secnya" >
           <Col className="d-flex align-items-center">
             <div>
               <h1 className="display-4 mb-4">History</h1>
@@ -89,7 +89,7 @@ export const About = () => {
             </div>
           </Col>
         </Row>
-        <Row className="sec_sp_sec" >
+        <Row className="sec_sp_secnya" >
           <Col className="d-flex align-items-center">
             <div className="gallery-container">
               <h1 className="display-4 mb-4 mt-4">Fans Club</h1>

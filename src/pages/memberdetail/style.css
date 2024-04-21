@@ -26,7 +26,35 @@
     -webkit-column-gap: 4rem;
 }
 
+:root {
+    --bg-color-red: 200;
+    --bg-color-green: 200;
+    --bg-color-blue: 200;
+}
+
+.ngikutin {
+    background-color: rgba(var(--bg-color-red), var(--bg-color-green), var(--bg-color-blue), 0.25);
+    border-radius: 3%;
+    padding: 5%;
+    margin-top: 100px;
+}
+
+.ngikutindata {
+    background-color: rgba(var(--bg-color-red), var(--bg-color-green), var(--bg-color-blue), 0.25);
+    border-radius: 3%;
+    /* margin-top: 100px; */
+}
+
+.rounding {
+    border-radius: 20px;
+}
+
 .ngikutaplikasi {
+    background: var(--primary-color);
+    border-color: var(--secondary-color);
+}
+
+.ngikutaplikasiCheki {
     background: var(--primary-color);
     border-color: var(--secondary-color);
 }
@@ -170,5 +198,11 @@
         bottom: 0;
         left: 10px;
     }
+
+    .ngikutaplikasi {
+        background-color: rgba(var(--bg-color-red), var(--bg-color-green), var(--bg-color-blue), 0.25);
+        border-radius: 3%;
+    }
+
 
 }

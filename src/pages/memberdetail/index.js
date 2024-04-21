@@ -19,15 +19,15 @@ const MemberDetail = () => {
   const memberData = member.dataMember[callsign];
 
   return (
-    <Container className="mt-5 ngikutaplikasi">
+    <Container className="mt-5 ngikutaplikasi rounding">
       <Row >
 
 
         <Col lg={4} className="sticky-top mt-5" >
-          <Card style={{ padding: "20px" }} className="ngikutaplikasi">
+          <Card style={{ padding: "20px" }} className="ngikutaplikasiCheki">
             <div>
 
-              <Card.Body style={{ textAlign: "right", position: "relative" }} className="ngikutaplikasi">
+              <Card.Body style={{ textAlign: "right", position: "relative" }} className="ngikutaplikasiCheki">
                 <Card.Img variant="top" src={memberData.profile} />
                 <h3 className="cheki">
                   {memberData.message}
