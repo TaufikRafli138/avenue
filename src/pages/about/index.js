@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./style.css";
 import { Link } from "react-router-dom";
 import { Helmet, HelmetProvider } from "react-helmet-async";
@@ -16,9 +16,15 @@ import {
 import SpotifyPlayer from './albumPlayer';
 import Gallery from './gallery';
 export const About = () => {
+  useEffect(() => {
+    document.body.classList.add("member-page"); // Tambahkan kelas "member-page" ke elemen body saat komponen dimuat
+    return () => {
+      document.body.classList.remove("member-page"); // Hapus kelas saat komponen dibongkar
+    };
+  }, []);
   return (
     <HelmetProvider>
-      <Container className="About-header">
+      <Container className="About-header ngikutin">
         <Helmet>
           <meta charSet="utf-8" />
           <title> About | {meta.title}</title>

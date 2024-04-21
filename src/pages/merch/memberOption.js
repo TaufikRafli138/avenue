@@ -38,7 +38,7 @@ function MemberOption({ setTotal }) {
                     className="form-control"
                     value={selectedMembers[key]}
                     onChange={(e) => handleChange(e, key)}
-                    style={{ marginBottom: 20 }}
+                    style={{ marginBottom: 20, backgroundColor: 'rgba(255, 255, 255, 0.5)' }}
                 >
                     <option value="">Cheki with {member.dataMember[key].callsign}</option>
                     {[...Array(10)].map((_, index) => (

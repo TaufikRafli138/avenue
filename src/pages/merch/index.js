@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import * as emailjs from "emailjs-com";
 import "./style.css";
 import { Helmet, HelmetProvider } from "react-helmet-async";
@@ -9,6 +9,12 @@ import MemberOption from "./memberOption";
 import FileInput from "./fileUpload";
 
 export const Merchandise = () => {
+  useEffect(() => {
+    document.body.classList.add("member-page"); // Tambahkan kelas "member-page" ke elemen body saat komponen dimuat
+    return () => {
+      document.body.classList.remove("member-page"); // Hapus kelas saat komponen dibongkar
+    };
+  }, []);
   const [total, setTotal] = useState(0);
   const [formData, setFormdata] = useState({
     email: "",
@@ -69,7 +75,7 @@ export const Merchandise = () => {
 
   return (
     <HelmetProvider>
-      <Container>
+      <Container className="ngikutin">
         <Helmet>
           <meta charSet="utf-8" />
           <title>{meta.title} | Merchandise</title>
@@ -112,6 +118,7 @@ export const Merchandise = () => {
                     type="text"
                     required
                     onChange={handleChange}
+                    style={{ backgroundColor: 'rgba(255, 255, 255, 0.5)', color: 'var(--secondary-color)' }}
                   />
                 </Col>
                 <Col lg="6" className="form-group">
@@ -124,6 +131,7 @@ export const Merchandise = () => {
                     value={formData.email || ""}
                     required
                     onChange={handleChange}
+                    style={{ backgroundColor: 'rgba(255, 255, 255, 0.5)', color: 'var(--secondary-color)' }}
                   />
                 </Col>
               </Row>
@@ -138,6 +146,7 @@ export const Merchandise = () => {
                     type="text"
                     required
                     onChange={handleChange}
+                    style={{ backgroundColor: 'rgba(255, 255, 255, 0.5)', color: 'var(--secondary-color)' }}
                   />
                 </Col>
                 <Col lg="6" className="form-group">
@@ -150,6 +159,7 @@ export const Merchandise = () => {
                     value={formData.social || ""}
                     required
                     onChange={handleChange}
+                    style={{ backgroundColor: 'rgba(255, 255, 255, 0.5)', color: 'var(--secondary-color)' }}
                   />
 
                 </Col>
@@ -165,6 +175,7 @@ export const Merchandise = () => {
                   value={formData.origin || ""}
                   required
                   onChange={handleChange}
+                  style={{ backgroundColor: 'rgba(255, 255, 255, 0.5)', color: 'var(--secondary-color)' }}
                 />
               </Col>
 

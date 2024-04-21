@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import * as emailjs from "emailjs-com";
 import "./style.css";
 import { Helmet, HelmetProvider } from "react-helmet-async";
@@ -7,6 +7,12 @@ import { Container, Row, Col, Alert } from "react-bootstrap";
 import { contactConfig, dataabout } from "../../content_option";
 
 export const ContactUs = () => {
+  useEffect(() => {
+    document.body.classList.add("member-page"); // Tambahkan kelas "member-page" ke elemen body saat komponen dimuat
+    return () => {
+      document.body.classList.remove("member-page"); // Hapus kelas saat komponen dibongkar
+    };
+  }, []);
   const [formData, setFormdata] = useState({
     email: "",
     name: "",
@@ -66,7 +72,7 @@ export const ContactUs = () => {
 
   return (
     <HelmetProvider>
-      <Container>
+      <Container className="ngikutin">
         <Helmet>
           <meta charSet="utf-8" />
           <title>{meta.title} | Contact</title>
@@ -152,7 +158,7 @@ export const ContactUs = () => {
               <br />
               <Row>
                 <Col lg="12" className="form-group">
-                  <button className="btn ac_btn" type="submit">
+                  <button className="btn ac_btn" type="submit" style={{ width: '100%', height: '150%' }}>
                     {formData.loading ? "Sending..." : "Send"}
                   </button>
                 </Col>
