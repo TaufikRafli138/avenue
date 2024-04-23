@@ -30,14 +30,14 @@ export const ContactUs = () => {
     const templateParams = {
       from_name: formData.email,
       user_name: formData.name,
-      to_name: contactConfig.YOUR_EMAIL,
+      to_name: contactConfig.YOUR_MSG,
       message: formData.message,
     };
 
     emailjs
       .send(
         contactConfig.YOUR_SERVICE_ID,
-        contactConfig.YOUR_TEMPLATE_ID,
+        "management_avenue",
         templateParams,
         contactConfig.YOUR_USER_ID
       )
@@ -46,7 +46,7 @@ export const ContactUs = () => {
           console.log(result.text);
           setFormdata({
             loading: false,
-            alertmessage: "SUCCESS! ,Thankyou for your messege",
+            alertmessage: "Berhasil Mengirim Pesan ke Management Avenue !!",
             variant: "success",
             show: true,
           });

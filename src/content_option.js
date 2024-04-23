@@ -266,15 +266,16 @@ const dataportfolio = [{
 ];
 
 const contactConfig = {
+    YOUR_MSG: "Management Avenue J",
     YOUR_EMAIL: "TaufikCahyo45@gmail.com",
     YOUR_FONE: "0858-8670-0641",
     YOUR_WA: "6285886700641",
     description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi vehicula eu nunc et sollicitudin. Cras pulvinar, nisi at imperdiet pharetra. ",
     // creat an emailjs.com account 
     // check out this tutorial https://www.emailjs.com/docs/examples/reactjs/
-    YOUR_SERVICE_ID: "service_qnkgjlf",
+    YOUR_SERVICE_ID: "service_ghj93yz",
     YOUR_TEMPLATE_ID: "template_dutee1i",
-    YOUR_USER_ID: "uuIO6HKHEPqIdYhBA",
+    YOUR_USER_ID: "BQfeK1UVAUE8NKAOf",
 };
 
 const socialprofils = {

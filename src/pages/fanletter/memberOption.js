@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 import { member } from "../../memberAvenue";
 
-function MemberOption() {
+function MemberOption({ handleChangeMember }) {
     const [selectedMember, setSelectedMember] = useState('');
 
     const handleChange = (event) => {
         setSelectedMember(event.target.value);
+        handleChangeMember(event.target.value);
     };
 
     return (

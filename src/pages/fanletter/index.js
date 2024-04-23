@@ -18,6 +18,10 @@ export const Fanletter = () => {
     variant: "",
   });
 
+  const handleChangeMember = (selectedMember) => {
+    setFormdata({ ...formData, selectedMember });
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
     setFormdata({ loading: true });
@@ -25,14 +29,18 @@ export const Fanletter = () => {
     const templateParams = {
       from_name: formData.email,
       user_name: formData.name,
+      phone: formData.phone,
+      sosmed: formData.social,
+      origin: formData.origin,
       to_name: contactConfig.YOUR_EMAIL,
       message: formData.message,
+      from: formData.selectedMember,
     };
 
     emailjs
       .send(
         contactConfig.YOUR_SERVICE_ID,
-        contactConfig.YOUR_TEMPLATE_ID,
+        "management_avenue",
         templateParams,
         contactConfig.YOUR_USER_ID
       )
@@ -41,7 +49,7 @@ export const Fanletter = () => {
           console.log(result.text);
           setFormdata({
             loading: false,
-            alertmessage: "SUCCESS! ,Thankyou for your messege",
+            alertmessage: "Success mengirim fan letter!, Fan letter anda telah diterima member.",
             variant: "success",
             show: true,
           });
@@ -166,7 +174,7 @@ export const Fanletter = () => {
               </Col>
 
               <Col lg="12" className="form-group">
-                <MemberOption />
+                <MemberOption handleChangeMember={handleChangeMember} />
               </Col>
               <textarea
                 className="form-control rounded-0"
