@@ -10,12 +10,14 @@ import FileInput from "./fileUpload";
 
 export const Merchandise = () => {
   useEffect(() => {
-    document.body.classList.add("member-page"); // Tambahkan kelas "member-page" ke elemen body saat komponen dimuat
+    document.body.classList.add("merch-page");
     return () => {
-      document.body.classList.remove("member-page"); // Hapus kelas saat komponen dibongkar
+      document.body.classList.remove("merch-page");
     };
   }, []);
+  const [totalRandom, setTotalRandom] = useState(0);
   const [total, setTotal] = useState(0);
+  const [randomNumber, setRandomNumber] = useState(0);
   const [formData, setFormdata] = useState({
     email: "",
     name: "",
@@ -26,15 +28,38 @@ export const Merchandise = () => {
     variant: "",
   });
 
+  useEffect(() => {
+    addRandomNumberToTotal();
+  }, [totalRandom]);
+
+  const addRandomNumberToTotal = () => {
+    const randomNum = generateRandomNumber();
+    setRandomNumber(randomNum);
+    setTotalRandom(randomNum);
+  };
+
+  const generateRandomNumber = () => {
+    const randomNumber = Math.floor(Math.random() * 10);
+    return randomNumber;
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    setFormdata({ loading: true });
+    setFormdata({ ...formData, loading: true });
+
+    const total_cheki = total;
+    const total_pay = (total * 30000) + randomNumber;
+    const mycode = `${formData.name.toUpperCase()}/${new Date().toLocaleDateString('en-GB').replace(/\//g, '-')}-AVJ/${total_pay}`;
 
     const templateParams = {
       from_name: formData.email,
       user_name: formData.name,
+      social: formData.social,
+      user_name: formData.phone,
       to_name: contactConfig.YOUR_EMAIL,
-      message: formData.message,
+      total_cheki: total_cheki,
+      total_pay: total_pay,
+      mycode: mycode,
     };
 
     emailjs
@@ -48,8 +73,9 @@ export const Merchandise = () => {
         (result) => {
           console.log(result.text);
           setFormdata({
+            ...formData,
             loading: false,
-            alertmessage: "SUCCESS! ,Thankyou for your messege",
+            alertmessage: "SUCCESS! ,Thank you for your message",
             variant: "success",
             show: true,
           });
@@ -57,7 +83,8 @@ export const Merchandise = () => {
         (error) => {
           console.log(error.text);
           setFormdata({
-            alertmessage: `Faild to send!,${error.text}`,
+            ...formData,
+            alertmessage: `Failed to send!,${error.text}`,
             variant: "danger",
             show: true,
           });
@@ -91,11 +118,10 @@ export const Merchandise = () => {
           <Col lg="12">
             <h3 className="color_sec py-4">Order now, and have memories with your favorite members!!</h3>
             <Alert
-              //show={formData.show}
               variant={formData.variant}
               className={`rounded-0 co_alert ${formData.show ? "d-block" : "d-none"
                 }`}
-              onClose={() => setFormdata({ show: false })}
+              onClose={() => setFormdata({ ...formData, show: false })}
               dismissible
             >
               <p className="my-0">{formData.alertmessage}</p>
@@ -161,10 +187,8 @@ export const Merchandise = () => {
                     onChange={handleChange}
                     style={{ backgroundColor: 'rgba(255, 255, 255, 0.5)', color: 'var(--secondary-color)' }}
                   />
-
                 </Col>
               </Row>
-
               <Col lg="12" className="form-group">
                 <input
                   className="form-control rounded-0"
@@ -178,28 +202,27 @@ export const Merchandise = () => {
                   style={{ backgroundColor: 'rgba(255, 255, 255, 0.5)', color: 'var(--secondary-color)' }}
                 />
               </Col>
-
               <Col lg="12" className="form-group">
                 <MemberOption setTotal={setTotal} />
               </Col>
               <Col lg="12" className="form-group">
                 <div style={{ display: "flex", justifyContent: "space-between", marginBottom: "20px" }}>
+                  <h4>Your Unique Code ( {totalRandom} ) </h4>
+                </div>
+                <div style={{ display: "flex", justifyContent: "space-between", marginBottom: "20px" }}>
                   <h4>Total Order Quantity</h4>
-                  <h3>Total: {total}</h3> {/* Tampilkan total di sini */}
+                  <h3>Total: {total}</h3>
                 </div>
                 <div style={{ display: "flex", justifyContent: "space-between", marginBottom: "20px" }}>
                   <h4></h4>
-                  <h4>{(total * 30000).toLocaleString('id-ID', { style: 'currency', currency: 'IDR' })}</h4>
-
+                  <h4>{((total * 30000) + totalRandom).toLocaleString('id-ID', { style: 'currency', currency: 'IDR' })}</h4>
                 </div>
                 <div style={{ display: "flex", justifyContent: "space-between", marginBottom: "20px" }}>
                   <h4> Detail Transfer<br />BCA : 1390904378 (Muhammad Ridwan Jamil)</h4>
                 </div>
-
               </Col>
               <Col lg="12" className="form-group">
                 <FileInput />
-
               </Col>
               <br />
               <Row className="mb-5">

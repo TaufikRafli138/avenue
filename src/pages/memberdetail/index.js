@@ -10,7 +10,7 @@ import VideoComponent from "./jiko";
 
 const MemberDetail = () => {
   useEffect(() => {
-    document.body.classList.add("member-page"); // Tambahkan kelas "member-page" ke elemen body saat komponen dimuat
+    document.body.classList.add("detail-page"); // Tambahkan kelas "member-page" ke elemen body saat komponen dimuat
     return () => {
       document.body.classList.remove("member-page"); // Hapus kelas saat komponen dibongkar
     };

@@ -8,6 +8,66 @@
     /* Background tetap pada posisi saat scrolling */
 }
 
+.contact-page {
+
+    background-image: url('../../../public/ourmember.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    /* Background tetap pada posisi saat scrolling */
+}
+
+.about-page {
+
+    background-image: url('../../../public/ourmember.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    /* Background tetap pada posisi saat scrolling */
+}
+
+.gallery-page {
+
+    background-image: url('../../../public/ourmember.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    /* Background tetap pada posisi saat scrolling */
+}
+
+.detail-page {
+
+    background-image: url('../../../public/ourmember.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    /* Background tetap pada posisi saat scrolling */
+}
+
+.merch-page {
+
+    background-image: url('../../../public/ourmember.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    /* Background tetap pada posisi saat scrolling */
+}
+
+.fanlet-page {
+
+    background-image: url('../../../public/ourmember.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    /* Background tetap pada posisi saat scrolling */
+}
+
 [data-theme="dark"] .member-page {
 
     background-image: url('../../../public/ourmember-dark.jpg');
@@ -15,6 +75,66 @@
     background-position: center;
     background-repeat: no-repeat;
     background-attachment: fixed;
+}
+
+[data-theme="dark"] .contact-page {
+
+    background-image: url('../../../public/ourmember.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    /* Background tetap pada posisi saat scrolling */
+}
+
+[data-theme="dark"] .about-page {
+
+    background-image: url('../../../public/ourmember.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    /* Background tetap pada posisi saat scrolling */
+}
+
+[data-theme="dark"] .gallery-page {
+
+    background-image: url('../../../public/ourmember.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    /* Background tetap pada posisi saat scrolling */
+}
+
+[data-theme="dark"] .detail-page {
+
+    background-image: url('../../../public/ourmember.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    /* Background tetap pada posisi saat scrolling */
+}
+
+.merch-page {
+
+    background-image: url('../../../public/ourmember.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    /* Background tetap pada posisi saat scrolling */
+}
+
+.fanlet-page {
+
+    background-image: url('../../../public/ourmember.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    /* Background tetap pada posisi saat scrolling */
 }
 
 .imgnya {

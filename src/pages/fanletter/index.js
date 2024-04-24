@@ -1,13 +1,20 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import * as emailjs from "emailjs-com";
 import "./style.css";
 import { Helmet, HelmetProvider } from "react-helmet-async";
 import { meta } from "../../content_option";
+import { contactManagement } from "../../mailerTemplate";
 import { Container, Row, Col, Alert } from "react-bootstrap";
 import { contactConfig, dataabout } from "../../content_option";
 import MemberOption from "./memberOption";
 
 export const Fanletter = () => {
+  useEffect(() => {
+    document.body.classList.add("member-page"); // Tambahkan kelas "member-page" ke elemen body saat komponen dimuat
+    return () => {
+      document.body.classList.remove("member-page"); // Hapus kelas saat komponen dibongkar
+    };
+  }, []);
   const [formData, setFormdata] = useState({
     email: "",
     name: "",
@@ -28,13 +35,20 @@ export const Fanletter = () => {
 
     const templateParams = {
       from_name: formData.email,
+      subject: "Hai, " + formData.selectedMember + ". ada fanletter baru nih !!",
       user_name: formData.name,
-      phone: formData.phone,
-      sosmed: formData.social,
-      origin: formData.origin,
-      to_name: contactConfig.YOUR_EMAIL,
-      message: formData.message,
+      to_name: formData.email, //Ganti Kalau member udah punya email
       from: formData.selectedMember,
+      H1: "Hai, " + formData.selectedMember,
+      bodyemailatas: contactManagement.bodyemailatas.replace('{avenueMember}', formData.selectedMember),
+      bodyemailtengah: contactManagement.bodyemailtengah.replace('{message}', formData.message),
+      bodyemailbawah: contactManagement.bodyemailbawah
+        .replace('{From}', formData.name)
+        .replace('{Email}', formData.email)
+        .replace('{Phone}', formData.phone)
+        .replace('{Social}', formData.social)
+        .replace('{Organization}', formData.origin),
+      footer_akhir: contactManagement.footer_akhir,
     };
 
     emailjs
@@ -57,7 +71,7 @@ export const Fanletter = () => {
         (error) => {
           console.log(error.text);
           setFormdata({
-            alertmessage: `Faild to send!,${error.text}`,
+            alertmessage: `Failed to send!,${error.text}`,
             variant: "danger",
             show: true,
           });
@@ -65,6 +79,7 @@ export const Fanletter = () => {
         }
       );
   };
+
 
   const handleChange = (e) => {
     setFormdata({
@@ -75,7 +90,7 @@ export const Fanletter = () => {
 
   return (
     <HelmetProvider>
-      <Container>
+      <Container className="ngikutin">
         <Helmet>
           <meta charSet="utf-8" />
           <title>{meta.title} | Contact</title>
@@ -190,7 +205,7 @@ export const Fanletter = () => {
               <br />
               <Row>
                 <Col lg="12" className="form-group">
-                  <button className="btn ac_btn" type="submit">
+                  <button className="btn ac_btn" type="submit" style={{ width: "100%" }}>
                     {formData.loading ? "Sending..." : "Send"}
                   </button>
                 </Col>

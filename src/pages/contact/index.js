@@ -3,12 +3,13 @@ import * as emailjs from "emailjs-com";
 import "./style.css";
 import { Helmet, HelmetProvider } from "react-helmet-async";
 import { meta } from "../../content_option";
+import { contactStaffManagement } from "../../mailerTemplate";
 import { Container, Row, Col, Alert } from "react-bootstrap";
 import { contactConfig, dataabout } from "../../content_option";
 
 export const ContactUs = () => {
   useEffect(() => {
-    document.body.classList.add("member-page"); // Tambahkan kelas "member-page" ke elemen body saat komponen dimuat
+    document.body.classList.add("contact-page"); // Tambahkan kelas "member-page" ke elemen body saat komponen dimuat
     return () => {
       document.body.classList.remove("member-page"); // Hapus kelas saat komponen dibongkar
     };
@@ -30,8 +31,15 @@ export const ContactUs = () => {
     const templateParams = {
       from_name: formData.email,
       user_name: formData.name,
-      to_name: contactConfig.YOUR_MSG,
-      message: formData.message,
+      subject: "Hai Management ada yang hubungi anda nih !!",
+      to_name: formData.email, //Ganti Kalau member udah punya email
+      H1: "Hai Management",
+      bodyemailatas: contactStaffManagement.bodyemailatas.replace('${avenueMember}', contactConfig.YOUR_MSG),
+      bodyemailtengah: contactStaffManagement.bodyemailtengah.replace('{message}', formData.message),
+      bodyemailbawah: contactStaffManagement.bodyemailbawah
+        .replace('{From}', formData.name)
+        .replace('{Email}', formData.email)
+      ,
     };
 
     emailjs
@@ -54,7 +62,7 @@ export const ContactUs = () => {
         (error) => {
           console.log(error.text);
           setFormdata({
-            alertmessage: `Faild to send!,${error.text}`,
+            alertmessage: `Failed to send!,${error.text}`,
             variant: "danger",
             show: true,
           });
@@ -62,6 +70,7 @@ export const ContactUs = () => {
         }
       );
   };
+
 
   const handleChange = (e) => {
     setFormdata({
