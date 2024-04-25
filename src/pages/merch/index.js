@@ -7,6 +7,7 @@ import { Container, Row, Col, Alert } from "react-bootstrap";
 import { contactConfig, dataabout } from "../../content_option";
 import MemberOption from "./memberOption";
 import FileInput from "./fileUpload";
+import { GoogleSpreadsheet } from "google-spreadsheet";
 
 export const Merchandise = () => {
   useEffect(() => {
@@ -15,6 +16,7 @@ export const Merchandise = () => {
       document.body.classList.remove("merch-page");
     };
   }, []);
+
   const [totalRandom, setTotalRandom] = useState(0);
   const [total, setTotal] = useState(0);
   const [randomNumber, setRandomNumber] = useState(0);
@@ -43,54 +45,70 @@ export const Merchandise = () => {
     return randomNumber;
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setFormdata({ ...formData, loading: true });
 
     const total_cheki = total;
-    const total_pay = (total * 30000) + randomNumber;
+    const total_pay = total * 30000;
     const mycode = `${formData.name.toUpperCase()}/${new Date().toLocaleDateString('en-GB').replace(/\//g, '-')}-AVJ/${total_pay}`;
 
     const templateParams = {
       from_name: formData.email,
       user_name: formData.name,
       social: formData.social,
-      user_name: formData.phone,
+      phone: formData.phone,
       to_name: contactConfig.YOUR_EMAIL,
       total_cheki: total_cheki,
       total_pay: total_pay,
       mycode: mycode,
     };
 
-    emailjs
-      .send(
+    try {
+      // Kirim email menggunakan emailjs
+      await emailjs.send(
         contactConfig.YOUR_SERVICE_ID,
         contactConfig.YOUR_TEMPLATE_ID,
         templateParams,
         contactConfig.YOUR_USER_ID
-      )
-      .then(
-        (result) => {
-          console.log(result.text);
-          setFormdata({
-            ...formData,
-            loading: false,
-            alertmessage: "SUCCESS! ,Thank you for your message",
-            variant: "success",
-            show: true,
-          });
-        },
-        (error) => {
-          console.log(error.text);
-          setFormdata({
-            ...formData,
-            alertmessage: `Failed to send!,${error.text}`,
-            variant: "danger",
-            show: true,
-          });
-          document.getElementsByClassName("co_alert")[0].scrollIntoView();
-        }
       );
+
+      // Tambahkan data ke Google Sheets
+      const doc = new GoogleSpreadsheet("117VcreCauL3NgB6wYAAi-6H8WZ0Fls7AOnfVVOeC8Fc");
+      await doc.useServiceAccountAuth({
+        client_email: process.env.REACT_APP_GOOGLE_CLIENT_EMAIL,
+        private_key: process.env.REACT_APP_GOOGLE_PRIVATE_KEY.replace(/\\n/g, "\n"),
+      });
+      await doc.loadInfo();
+      const sheet = doc.sheetsByIndex[0]; // Index of the sheet to write to
+      await sheet.addRow({
+        Name: formData.name,
+        Email: formData.email,
+        Phone: formData.phone,
+        Social: formData.social,
+        Origin: formData.origin,
+        Total: total,
+        Total_Payment: ((total * 30000) + totalRandom).toLocaleString('id-ID', { style: 'currency', currency: 'IDR' }),
+        My_Code: mycode,
+      });
+
+      setFormdata({
+        ...formData,
+        loading: false,
+        alertmessage: "SUCCESS! Thank you for your message",
+        variant: "success",
+        show: true,
+      });
+    } catch (error) {
+      console.error("Error:", error);
+      setFormdata({
+        ...formData,
+        alertmessage: `Failed to send! ${error}`,
+        variant: "danger",
+        show: true,
+      });
+      document.getElementsByClassName("co_alert")[0].scrollIntoView();
+    }
   };
 
   const handleChange = (e) => {
@@ -240,3 +258,5 @@ export const Merchandise = () => {
     </HelmetProvider>
   );
 };
+
+export default Merchandise;
