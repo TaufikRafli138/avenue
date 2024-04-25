@@ -59,7 +59,7 @@ const member = {
             callsign: "Nara",
             email: "nara.avenue@gmail.com",
             notelp: "058668558858",
-            asal: "Tasikmalaya",
+            asal: "Bali",
             role: "member",
             instagram: "hynnaraa",
             twitter: "hynnaraaa",

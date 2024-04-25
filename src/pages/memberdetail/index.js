@@ -68,9 +68,6 @@ const MemberDetail = () => {
                   <strong>Tanggal Lahir</strong>: {memberData.bod}
                 </div>
                 <div className="member-info">
-                  <strong>Horoskop</strong>: {memberData.horoskop}
-                </div>
-                <div className="member-info">
                   <strong>Nama Panggilan</strong>: {memberData.callsign}
                 </div>
                 <div className="member-info">
